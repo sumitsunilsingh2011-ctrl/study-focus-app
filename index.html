@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#ef4444">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Focus SIM - Cross-Platform Study Kiosk</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- App Container (Constrained on Desktop, Fullscreen on Mobile) -->
+  <div class="app-shell">
+    <!-- Top Bar -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">FOCUS SIM</span>
+      </div>
+      <div class="status-indicator" id="header-status">
+        <span class="status-dot"></span>
+        <span id="header-status-text">IDLE</span>
+      </div>
+    </header>
+
+    <!-- Main Views -->
+    <main class="app-content">
+      <!-- VIEW 1: STUDY SIM (FOCUS ROOM) -->
+      <section class="view-panel active" id="view-focus">
+        <!-- Idle Setup Card -->
+        <div class="card" id="focus-setup-card">
+          <div class="badge-kiosk">STUDENT HARDCORE PROTOCOL</div>
+          <h2 class="hero-title">Study Kiosk Lock</h2>
+          <p class="hero-desc">Locks your device into a strict study environment. Minimizing or opening Instagram triggers an immediate breach alarm.</p>
+
+          <div class="form-group">
+            <label>Target Subject</label>
+            <input type="text" id="target-subject" placeholder="e.g. Mathematics - Calculus" value="Deep Study Session">
+          </div>
+
+          <div class="form-group">
+            <label>Focus Duration</label>
+            <div class="duration-grid">
+              <button class="btn-duration active" data-mins="15">15m</button>
+              <button class="btn-duration" data-mins="25">25m</button>
+              <button class="btn-duration" data-mins="45">45m</button>
+              <button class="btn-duration" data-mins="60">60m</button>
+              <button class="btn-duration" data-mins="90">90m</button>
+            </div>
+            <input type="number" id="custom-mins" placeholder="Or enter custom minutes (e.g. 30)" class="input-custom">
+          </div>
+
+          <button class="btn-primary-lock" id="btn-start-session">
+            🔒 ENGAGE HARDCORE KIOSK
+          </button>
+        </div>
+
+        <!-- Active Kiosk Card -->
+        <div class="card active-kiosk-card" id="focus-active-card">
+          <div class="active-badge" id="active-badge-tag">🔒 HARDCORE LOCK ENGAGED</div>
+          <h3 class="active-subject" id="active-subject-display">Subject Name</h3>
+
+          <div class="timer-circle-container">
+            <svg class="progress-svg" viewBox="0 0 260 260">
+              <circle class="circle-bg" cx="130" cy="130" r="115"></circle>
+              <circle class="circle-bar" id="progress-bar" cx="130" cy="130" r="115"></circle>
+            </svg>
+            <div class="timer-digits-wrapper">
+              <div class="timer-digits" id="timer-display">25:00</div>
+              <div class="timer-label">NO BYPASS ACTIVE</div>
+            </div>
+          </div>
+
+          <div class="kiosk-stats">
+            <div class="stat-pill">
+              <span class="stat-number" id="distraction-breach-count">0</span>
+              <span class="stat-lbl">Distraction Intercepts</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-number" id="session-wake-status">Active</span>
+              <span class="stat-lbl">Screen Wake Lock</span>
+            </div>
+          </div>
+
+          <div class="kiosk-controls">
+            <button class="btn-secondary" id="btn-fullscreen-toggle">
+              🖥️ Immersive Fullscreen
+            </button>
+          </div>
+
+          <div class="quote-box">
+            "Your future is created by what you do today, not tomorrow."
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: RESTRICTED APPS -->
+      <section class="view-panel" id="view-apps">
+        <div class="card">
+          <h2 class="panel-title">Restricted Apps (100% Blocked)</h2>
+          <p class="panel-desc">These applications are actively targeted for interception when your study lock is running.</p>
+
+          <div class="apps-list">
+            <div class="app-item">
+              <div class="app-icon">📸</div>
+              <div class="app-info">
+                <strong>Instagram</strong>
+                <span>Social Media & Reels</span>
+              </div>
+              <span class="app-tag-blocked">Blocked</span>
+            </div>
+            <div class="app-item">
+              <div class="app-icon">▶️</div>
+              <div class="app-info">
+                <strong>YouTube & Shorts</strong>
+                <span>Video Streaming</span>
+              </div>
+              <span class="app-tag-blocked">Blocked</span>
+            </div>
+            <div class="app-item">
+              <div class="app-icon">💬</div>
+              <div class="app-info">
+                <strong>WhatsApp / Telegram</strong>
+                <span>Instant Messaging</span>
+              </div>
+              <span class="app-tag-blocked">Blocked</span>
+            </div>
+            <div class="app-item">
+              <div class="app-icon">🐦</div>
+              <div class="app-info">
+                <strong>X / Twitter</strong>
+                <span>Feeds & News</span>
+              </div>
+              <span class="app-tag-blocked">Blocked</span>
+            </div>
+            <div class="app-item">
+              <div class="app-icon">🎮</div>
+              <div class="app-info">
+                <strong>Gaming Apps / Discord</strong>
+                <span>Games & Voice</span>
+              </div>
+              <span class="app-tag-blocked">Blocked</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: MULTI-DEVICE SETUP -->
+      <section class="view-panel" id="view-devices">
+        <div class="card">
+          <h2 class="panel-title">Cross-Device Pairing</h2>
+          <p class="panel-desc">Run Focus SIM seamlessly across your Laptop and Mobile Phone simultaneously.</p>
+
+          <div class="device-card">
+            <h3>📱 On Your Mobile Phone (Android / iPhone)</h3>
+            <ol class="setup-steps">
+              <li>Open Chrome / Safari on your phone.</li>
+              <li>Enter your laptop's local network IP (or bookmark this web app).</li>
+              <li>Tap the browser menu <strong>⋮</strong> and select <strong>"Install app"</strong> or <strong>"Add to Home Screen"</strong>.</li>
+              <li>The app will run in standalone fullscreen mode without address bars!</li>
+            </ol>
+          </div>
+
+          <div class="device-card">
+            <h3>💻 On Your Laptop</h3>
+            <ol class="setup-steps">
+              <li>Open Chrome and click the <strong>Install</strong> icon in the address bar.</li>
+              <li>Pair with the Chrome Extension & Windows App Guard to enforce network-level process shutdown.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: ANALYTICS -->
+      <section class="view-panel" id="view-analytics">
+        <div class="card">
+          <h2 class="panel-title">Student Focus Analytics</h2>
+          <div class="stats-overview-grid">
+            <div class="metric-card">
+              <div class="metric-val" id="total-sessions-val">0</div>
+              <div class="metric-label">Completed Sessions</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="total-focus-mins">0m</div>
+              <div class="metric-label">Focus Minutes</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="total-breaches-val">0</div>
+              <div class="metric-label">Temptations Intercepted</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Navigation Bar (Mobile Native Style) -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="view-focus">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-text">Focus SIM</span>
+      </button>
+      <button class="nav-item" data-target="view-apps">
+        <span class="nav-icon">🚫</span>
+        <span class="nav-text">Blocked</span>
+      </button>
+      <button class="nav-item" data-target="view-devices">
+        <span class="nav-icon">📱</span>
+        <span class="nav-text">Devices</span>
+      </button>
+      <button class="nav-item" data-target="view-analytics">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Stats</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- DISTRACTION BREACH INTERVENTION OVERLAY -->
+  <div class="breach-overlay" id="breach-overlay">
+    <div class="breach-box">
+      <div class="breach-icon">🚨</div>
+      <h2 class="breach-title">FOCUS BREACH INTERCEPTED!</h2>
+      <p class="breach-msg">Ruk jao! Mind switch hua aur app minimize kar ke Instagram kholne lage?</p>
+      <div class="breach-details">
+        <p>Your <strong>Study Kiosk Lock</strong> is currently active. Any switch away is recorded as a focus failure.</p>
+      </div>
+      <button class="btn-return-focus" id="btn-breach-return">
+        ⬅️ Back to Books (Resume Study SIM)
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
